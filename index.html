@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Happy New Year 🎆</title>
+<style>
+  :root{
+    --bg1:#0f2027; --bg2:#203a43; --bg3:#2c5364;
+    --card: rgba(255,255,255,.08);
+    --stroke: rgba(255,255,255,.14);
+    --txt: rgba(255,255,255,.94);
+    --muted: rgba(255,255,255,.74);
+    --gold:#ffd36a; --pink:#ff5fd7; --cyan:#50e3ff;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100svh;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    color:#fff;
+    padding: env(safe-area-inset-top) 14px env(safe-area-inset-bottom);
+    background:
+      radial-gradient(1200px 800px at 20% 10%, rgba(80,227,255,.16), transparent 55%),
+      radial-gradient(1000px 700px at 90% 20%, rgba(255,95,215,.14), transparent 55%),
+      linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+  }
+
+  /* floating orbs */
+  .orb{
+    position:absolute; width:420px; height:420px; border-radius:50%;
+    filter: blur(36px); opacity:.18; mix-blend-mode: screen;
+    animation: float 10s ease-in-out infinite;
+    pointer-events:none;
+  }
+  .orb.one{background: radial-gradient(circle at 30% 30%, var(--cyan), transparent 60%); left:-140px; top:40px;}
+  .orb.two{background: radial-gradient(circle at 30% 30%, var(--pink), transparent 60%); right:-160px; top:120px; animation-delay:-3s;}
+  .orb.three{background: radial-gradient(circle at 30% 30%, var(--gold), transparent 60%); left:22%; bottom:-200px; animation-delay:-6s;}
+  @keyframes float{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(35px,-25px,0) scale(1.06)}}
+
+  .stars{
+    position:absolute; inset:0; pointer-events:none; opacity:.85;
+    background:
+      radial-gradient(2px 2px at 12% 18%, rgba(255,255,255,.75), transparent 60%),
+      radial-gradient(1.5px 1.5px at 28% 66%, rgba(255,255,255,.55), transparent 60%),
+      radial-gradient(2.2px 2.2px at 74% 28%, rgba(255,255,255,.65), transparent 60%),
+      radial-gradient(1.4px 1.4px at 84% 62%, rgba(255,255,255,.55), transparent 60%),
+      radial-gradient(1.8px 1.8px at 44% 22%, rgba(255,255,255,.55), transparent 60%),
+      radial-gradient(1.2px 1.2px at 56% 78%, rgba(255,255,255,.45), transparent 60%);
+    animation: twinkle 3.8s ease-in-out infinite;
+  }
+  @keyframes twinkle{0%,100%{opacity:.55; transform:translateY(0)}50%{opacity:.9; transform:translateY(-2px)}}
+
+  .card{
+    position:relative;
+    width:min(560px, 96vw);
+    text-align:center;
+    padding:28px 20px 22px;
+    border-radius:18px;
+    background: var(--card);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 25px 60px rgba(0,0,0,.45);
+    border:1px solid var(--stroke);
+    opacity:0;
+    transform: translateY(16px) scale(.98);
+    animation: cardIn 1.05s cubic-bezier(.2,.9,.2,1) forwards;
+  }
+  @keyframes cardIn{to{opacity:1; transform:translateY(0) scale(1)}}
+
+  .card::before{
+    content:""; position:absolute; inset:-2px; border-radius:inherit;
+    background: linear-gradient(120deg,
+      transparent 0%,
+      rgba(255,255,255,0.12) 35%,
+      rgba(255,211,106,0.18) 50%,
+      rgba(255,255,255,0.12) 65%,
+      transparent 100%);
+    transform: translateX(-120%) skewX(-12deg);
+    animation: shine 3.8s ease-in-out infinite;
+    pointer-events:none;
+    mix-blend-mode: screen;
+  }
+  @keyframes shine{
+    0%,38%{transform:translateX(-120%) skewX(-12deg); opacity:0}
+    50%{opacity:.7}
+    74%{transform:translateX(120%) skewX(-12deg); opacity:0}
+    100%{transform:translateX(120%) skewX(-12deg); opacity:0}
+  }
+
+  h1{
+    margin:0 0 10px;
+    font-size: clamp(22px, 4.4vw, 34px);
+    letter-spacing:.3px;
+    opacity:0; transform: translateY(-14px);
+    animation: titleDrop .85s ease forwards .15s;
+    text-shadow: 0 0 18px rgba(255,211,106,.22);
+  }
+  @keyframes titleDrop{to{opacity:1; transform:translateY(0)}}
